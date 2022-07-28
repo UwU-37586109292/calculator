@@ -1,6 +1,13 @@
+/* color palette:   #FFDB99
+                    #B3A36B
+                    #99FFF8
+                    #6BB3AE
+                    #FF99E8
+ */
+
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
+    background-color: #FFDB99;
     margin: 0px;
     height: 100vh;
     display: flex;
@@ -14,16 +21,28 @@ body {
     justify-content: center;
     align-content: center;
     padding: 20px;
-    background-color: beige;
+    background-color: #B3A36B;
 }
 
 .calculator-container {
     display: flex;
     flex-direction: column;
+    background-color: #FF99E8;
+    padding: 15px;
+    border-radius: 8px;
 }
 
 .main {
-    background-color: azure;
     display: flex;
     justify-content: center;
+}
+
+button {
+    margin: 3px;
+    height: 50px;
+    width: 50px;
+    font-size: 25px;
+    border-radius: 8px;
+    border: 1px solid #6BB3AE;
+    background-color: #99FFF8;
 }
