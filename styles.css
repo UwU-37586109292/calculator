@@ -17,6 +17,13 @@ body {
     background-color: beige;
 }
 
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .main {
     background-color: azure;
+    display: flex;
+    justify-content: center;
 }
