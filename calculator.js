@@ -1,3 +1,20 @@
+let previousDisplayValue = '';
+let currentDisplayValue = '';
+let operator = '';
+
+
+const buttonsList = document.querySelectorAll('button');
+buttonsList.forEach(button => {
+    button.addEventListener('click', handleButtonClick);
+})
+
+
+function handleButtonClick(event) {
+    let buttonClicked = event.srcElement.innerText;
+    const display = document.querySelector('.display');
+
+    display.innerText = buttonClicked;
+}
 
 function operate(num1, num2, operator) {
     switch (operator) {
