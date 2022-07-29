@@ -18,15 +18,25 @@ function handleButtonClick(event) {
         cleanHistory();
         display.innerText = '0';
 
-    } else {
-        operationsHistory.push(buttonClicked);
+    } else if (buttonClicked === '=') {
         let length = operationsHistory.length;
-
-        display.innerText = shouldCalculate(operationsHistory) ?
-            operate(+operationsHistory[length - 3], +operationsHistory[length - 1], operationsHistory[length - 2])
-            : buttonClicked;
+        display.innerText = calculate();
+        cleanHistory();
+    }
+    else {
+        operationsHistory.push(buttonClicked);
+        display.innerText = buttonClicked;
     }
 }
+
+function calculate() {
+    let runningResult = operate(+operationsHistory[0], +operationsHistory[2], operationsHistory[1]);
+    for (let i = 4; i < operationsHistory.length; i = i + 2) {
+        runningResult = operate(runningResult, +operationsHistory[i], operationsHistory[i - 1]);
+    }
+    return runningResult;
+}
+
 function cleanHistory() {
     previousDisplayValue = '';
     currentDisplayValue = '';
