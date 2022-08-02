@@ -24,8 +24,12 @@ function handleButtonClick(event) {
         cleanHistory();
     }
     else {
-        operationsHistory.push(buttonClicked);
-        display.innerText = buttonClicked;
+        if (operationsHistory.length > 0 && /^[0-9]+$/.test(operationsHistory[operationsHistory.length - 1]) && /^[0-9]+$/.test(buttonClicked)) {
+            operationsHistory[operationsHistory.length - 1] = operationsHistory[operationsHistory.length - 1] + buttonClicked;
+        } else {
+            operationsHistory.push(buttonClicked);
+        }
+        display.innerText = operationsHistory[operationsHistory.length - 1];
     }
 }
 
