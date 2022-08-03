@@ -24,13 +24,17 @@ function handleButtonClick(event) {
         cleanHistory();
     }
     else {
-        if (operationsHistory.length > 0 && /^[0-9]+$/.test(operationsHistory[operationsHistory.length - 1]) && /^[0-9]+$/.test(buttonClicked)) {
+        if (operationsHistory.length > 0 && isNumber(operationsHistory[operationsHistory.length - 1]) && isNumber(buttonClicked)) {
             operationsHistory[operationsHistory.length - 1] = operationsHistory[operationsHistory.length - 1] + buttonClicked;
         } else {
             operationsHistory.push(buttonClicked);
         }
         display.innerText = operationsHistory[operationsHistory.length - 1];
     }
+}
+
+function isNumber(string) {
+    return /^[0-9]+$/.test(string);
 }
 
 function calculate() {
