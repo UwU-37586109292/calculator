@@ -51,11 +51,6 @@ function cleanHistory() {
     operator = '';
     operationsHistory = [];
 }
-function shouldCalculate(operationsHistoryList) {
-    let length = operationsHistory.length;
-    if (length < 3) return false;
-    return true;
-}
 
 function operate(num1, num2, operator) {
     switch (operator) {
