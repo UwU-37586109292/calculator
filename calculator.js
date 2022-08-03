@@ -20,7 +20,7 @@ function handleButtonClick(event) {
 
     } else if (buttonClicked === '=') {
         let length = operationsHistory.length;
-        display.innerText = calculate();
+        display.innerText = length > 2 ? calculate() : '0';
         cleanHistory();
     }
     else {
@@ -80,6 +80,10 @@ function subtract(num1, num2) {
     return num1 - num2;
 }
 function divide(num1, num2) {
+    if (num2 === 0) {
+        alert('Can\'t divide by 0!');
+        return 0;
+    }
     return num1 / num2;
 }
 function multiply(num1, num2) {
