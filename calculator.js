@@ -1,58 +1,85 @@
-let previousDisplayValue = '';
-let currentDisplayValue = '';
+let previousNumber = '';
+let currentNumber = '';
 let operator = '';
-let operationsHistory = [];
+let lastButtonClicked = '';
 
 
 const buttonsList = document.querySelectorAll('button');
 buttonsList.forEach(button => {
     button.addEventListener('click', handleButtonClick);
 })
+const display = document.querySelector('.display');
 
 
 function handleButtonClick(event) {
     let buttonClicked = event.srcElement.innerText;
 
-    const display = document.querySelector('.display');
-    if (buttonClicked === 'AC') {
-        cleanHistory();
-        display.innerText = '0';
+    switch (buttonClicked) {
+        case "AC":
+            cleanHistory();
+            display.innerText = '0';
+            break;
+        case "+":
+        case "-":
+        case "/":
+        case "*":
+            if (previousNumber && currentNumber) {
+                display.innerText = operate(previousNumber, currentNumber, operator);
+                lastButtonClicked = buttonClicked;
+            } else {
+                operator = buttonClicked;
+                lastButtonClicked = buttonClicked;
+                display.innerText = lastButtonClicked;
+            }
+            break;
+        case "=":
+            display.innerText = operate(previousNumber, currentNumber, operator);
+            lastButtonClicked = buttonClicked;
+            break;
+        default:
+            isNumber(buttonClicked) ? handleNumber(buttonClicked) : alert('?');
+            lastButtonClicked = buttonClicked;
+            break;
+    }
 
-    } else if (buttonClicked === '=') {
-        let length = operationsHistory.length;
-        display.innerText = length > 2 ? calculate() : '0';
-        cleanHistory();
-    }
-    else {
-        if (operationsHistory.length > 0 && isNumber(operationsHistory[operationsHistory.length - 1]) && isNumber(buttonClicked)) {
-            operationsHistory[operationsHistory.length - 1] = operationsHistory[operationsHistory.length - 1] + buttonClicked;
+    function handleNumber(string) {
+        if (isNumber(lastButtonClicked)) {
+            currentNumber += string;
         } else {
-            operationsHistory.push(buttonClicked);
+            previousNumber = currentNumber;
+            currentNumber = string;
         }
-        display.innerText = operationsHistory[operationsHistory.length - 1];
+        display.innerText = currentNumber;
     }
+    // else if (buttonClicked === '=') {
+    //     let length = operationsHistory.length;
+    //     display.innerText = length > 2 ? calculate() : '0';
+    //     cleanHistory();
+    // }
+    // else {
+    //     if (operationsHistory.length > 0 && isNumber(operationsHistory[operationsHistory.length - 1]) && isNumber(buttonClicked)) {
+    //         operationsHistory[operationsHistory.length - 1] += buttonClicked;
+    //     } else {
+    //         operationsHistory.push(buttonClicked);
+    //     }
+    //     display.innerText = operationsHistory[operationsHistory.length - 1];
+    // }
 }
 
 function isNumber(string) {
     return /^[0-9]+$/.test(string);
 }
 
-function calculate() {
-    let runningResult = operate(+operationsHistory[0], +operationsHistory[2], operationsHistory[1]);
-    for (let i = 4; i < operationsHistory.length; i = i + 2) {
-        runningResult = operate(runningResult, +operationsHistory[i], operationsHistory[i - 1]);
-    }
-    return runningResult;
-}
-
 function cleanHistory() {
-    previousDisplayValue = '';
-    currentDisplayValue = '';
+    previousNumber = '';
+    currentNumber = '';
     operator = '';
-    operationsHistory = [];
+    lastButtonClicked = '';
 }
 
 function operate(num1, num2, operator) {
+    num1 = +num1;
+    num2 = +num2;
     switch (operator) {
         case "+":
             return add(num1, num2);
