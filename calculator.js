@@ -44,15 +44,15 @@ function handleButtonClick(event) {
     }
     lastButtonClicked = buttonClicked;
 
+}
 
-    function handleNumber(string) {
-        if (isNumber(lastButtonClicked)) {
-            currentNumber += string;
-        } else {
-            currentNumber = string;
-        }
-        display.innerText = currentNumber;
+function handleNumber(string) {
+    if (isNumber(lastButtonClicked)) {
+        currentNumber += string;
+    } else {
+        currentNumber = string;
     }
+    display.innerText = currentNumber;
 }
 
 function isNumber(string) {
