@@ -8,6 +8,7 @@ const buttonsList = document.querySelectorAll('button');
 buttonsList.forEach(button => {
     button.addEventListener('click', handleButtonClick);
 })
+
 const display = document.querySelector('.display');
 
 function handleButtonClick(event) {
@@ -29,8 +30,10 @@ function handleButtonClick(event) {
                 operator = buttonClicked;
             } else {
                 operator = buttonClicked;
-                previousNumber = currentNumber;
-                currentNumber = '';
+                if (currentNumber) {
+                    previousNumber = currentNumber;
+                    currentNumber = '';
+                }
                 display.innerText = buttonClicked;
             }
             break;
@@ -38,6 +41,7 @@ function handleButtonClick(event) {
             if (previousNumber && currentNumber && operator) {
                 previousNumber = operate(previousNumber, currentNumber, operator);
                 display.innerText = previousNumber;
+                currentNumber = '';
             } else {
                 cleanHistory();
                 display.innerText = '0';
