@@ -2,9 +2,7 @@ let previousNumber = '';
 let currentNumber = '';
 let operator = '';
 let lastButtonClicked = '';
-//TODO: Add decimal number support
-//TODO: Add rounding for division results
-//TODO: 
+
 
 const buttonsList = document.querySelectorAll('button');
 buttonsList.forEach(button => {
