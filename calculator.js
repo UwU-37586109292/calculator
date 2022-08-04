@@ -2,7 +2,9 @@ let previousNumber = '';
 let currentNumber = '';
 let operator = '';
 let lastButtonClicked = '';
-
+//TODO: Add decimal number support
+//TODO: Add rounding for division results
+//TODO: 
 
 const buttonsList = document.querySelectorAll('button');
 buttonsList.forEach(button => {
@@ -35,8 +37,14 @@ function handleButtonClick(event) {
             }
             break;
         case "=":
-            previousNumber = operate(previousNumber, currentNumber, operator);
-            display.innerText = previousNumber;
+            if (previousNumber && currentNumber && operator) {
+                previousNumber = operate(previousNumber, currentNumber, operator);
+                display.innerText = previousNumber;
+            } else {
+                cleanHistory();
+                display.innerText = '0';
+
+            }
             break;
         default:
             isNumber(buttonClicked) ? handleNumber(buttonClicked) : alert('?');
