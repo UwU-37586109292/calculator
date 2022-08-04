@@ -10,7 +10,6 @@ buttonsList.forEach(button => {
 })
 const display = document.querySelector('.display');
 
-//TODO: save operation result to chain next operations 
 function handleButtonClick(event) {
     let buttonClicked = event.srcElement.innerText;
 
@@ -27,11 +26,12 @@ function handleButtonClick(event) {
                 previousNumber = operate(previousNumber, currentNumber, operator);
                 display.innerText = previousNumber;
                 currentNumber = '';
+                operator = buttonClicked;
             } else {
                 operator = buttonClicked;
                 previousNumber = currentNumber;
                 currentNumber = '';
-                display.innerText = lastButtonClicked;
+                display.innerText = buttonClicked;
             }
             break;
         case "=":
@@ -53,19 +53,6 @@ function handleButtonClick(event) {
         }
         display.innerText = currentNumber;
     }
-    // else if (buttonClicked === '=') {
-    //     let length = operationsHistory.length;
-    //     display.innerText = length > 2 ? calculate() : '0';
-    //     cleanHistory();
-    // }
-    // else {
-    //     if (operationsHistory.length > 0 && isNumber(operationsHistory[operationsHistory.length - 1]) && isNumber(buttonClicked)) {
-    //         operationsHistory[operationsHistory.length - 1] += buttonClicked;
-    //     } else {
-    //         operationsHistory.push(buttonClicked);
-    //     }
-    //     display.innerText = operationsHistory[operationsHistory.length - 1];
-    // }
 }
 
 function isNumber(string) {
