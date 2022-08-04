@@ -22,23 +22,22 @@ function handleButtonClick(event) {
         case "*":
             if (previousNumber && currentNumber) {
                 previousNumber = operate(previousNumber, currentNumber, operator);
-                displayValue(previousNumber);
                 currentNumber = '';
-                operator = buttonClicked;
+                displayValue(previousNumber);
             } else {
-                operator = buttonClicked;
                 if (currentNumber) {
                     previousNumber = currentNumber;
                     currentNumber = '';
                 }
                 displayValue(buttonClicked);
             }
+            operator = buttonClicked;
             break;
         case "=":
             if (previousNumber && currentNumber && operator) {
                 previousNumber = operate(previousNumber, currentNumber, operator);
-                displayValue(previousNumber);
                 currentNumber = '';
+                displayValue(previousNumber);
             } else {
                 cleanHistory();
             }
