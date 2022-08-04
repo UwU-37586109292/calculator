@@ -9,15 +9,12 @@ buttonsList.forEach(button => {
     button.addEventListener('click', handleButtonClick);
 })
 
-const display = document.querySelector('.display');
-
 function handleButtonClick(event) {
-    let buttonClicked = event.srcElement.innerText;
+    const buttonClicked = event.srcElement.innerText;
 
     switch (buttonClicked) {
         case "AC":
             cleanHistory();
-            display.innerText = '0';
             break;
         case "+":
         case "-":
@@ -25,7 +22,7 @@ function handleButtonClick(event) {
         case "*":
             if (previousNumber && currentNumber) {
                 previousNumber = operate(previousNumber, currentNumber, operator);
-                display.innerText = previousNumber;
+                displayValue(previousNumber);
                 currentNumber = '';
                 operator = buttonClicked;
             } else {
@@ -34,18 +31,16 @@ function handleButtonClick(event) {
                     previousNumber = currentNumber;
                     currentNumber = '';
                 }
-                display.innerText = buttonClicked;
+                displayValue(buttonClicked);
             }
             break;
         case "=":
             if (previousNumber && currentNumber && operator) {
                 previousNumber = operate(previousNumber, currentNumber, operator);
-                display.innerText = previousNumber;
+                displayValue(previousNumber);
                 currentNumber = '';
             } else {
                 cleanHistory();
-                display.innerText = '0';
-
             }
             break;
         default:
@@ -56,13 +51,18 @@ function handleButtonClick(event) {
 
 }
 
+function displayValue(val) {
+    const display = document.querySelector('.display');
+    display.innerText = val;
+}
+
 function handleNumber(string) {
     if (isNumber(lastButtonClicked)) {
         currentNumber += string;
     } else {
         currentNumber = string;
     }
-    display.innerText = currentNumber;
+    displayValue(currentNumber);
 }
 
 function isNumber(string) {
@@ -74,6 +74,7 @@ function cleanHistory() {
     currentNumber = '';
     operator = '';
     lastButtonClicked = '';
+    displayValue('0');
 }
 
 function operate(num1, num2, operator) {
