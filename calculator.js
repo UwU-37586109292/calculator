@@ -6,11 +6,18 @@ const MAX_DISPLAY_CHARS = 13;
 
 const buttonsList = document.querySelectorAll('button');
 buttonsList.forEach(button => {
-    button.addEventListener('click', handleButtonClick);
+    button.addEventListener('click', function (e) {
+        handleButtonClick(e.target.innerText);
+    }
+    )
 })
 
-function handleButtonClick(event) {
-    const buttonClicked = event.srcElement.innerText;
+window.addEventListener('keydown', function (e) {
+    handleButtonClick(e.key);
+})
+
+function handleButtonClick(key) {
+    const buttonClicked = key;
 
     switch (buttonClicked) {
         case "AC":
@@ -34,6 +41,7 @@ function handleButtonClick(event) {
             operator = buttonClicked;
             break;
         case "=":
+        case "Enter":
             if (previousNumber && currentNumber && operator) {
                 previousNumber = operate(previousNumber, currentNumber, operator);
                 currentNumber = '';
