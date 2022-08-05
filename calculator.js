@@ -43,7 +43,9 @@ function handleButtonClick(event) {
             }
             break;
         case ".":
-            currentNumber += ".";
+            if (!currentNumber.includes(".")) {
+                currentNumber += ".";
+            } displayValue(currentNumber);
             break;
         default:
             isNumber(buttonClicked) ? handleNumber(buttonClicked) : alert('?');
@@ -61,7 +63,7 @@ function displayValue(val) {
         display.innerText = base.substring(0, MAX_DISPLAY_CHARS - 1 - notation.length + 1) + notation;
     } else {
         val = val.substring(0, MAX_DISPLAY_CHARS - 1);
-        if (isNumber(val)) {
+        if (isNumber(val) && val === previousNumber) {
             display.innerText = Number.parseFloat(val).toLocaleString('en-GB');
         }
         else display.innerText = val;
