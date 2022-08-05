@@ -47,12 +47,14 @@ function handleButtonClick(event) {
             break;
     }
     lastButtonClicked = buttonClicked;
-
 }
 
 function displayValue(val) {
     const display = document.querySelector('.display');
-    display.innerText = val;
+    if (isNumber(val)) {
+        display.innerText = Number.parseFloat(val).toLocaleString('en-GB');
+    }
+    else display.innerText = val;
 }
 
 function handleNumber(string) {
