@@ -2,7 +2,7 @@ let previousNumber = '';
 let currentNumber = '';
 let operator = '';
 let lastButtonClicked = '';
-
+const MAX_DISPLAY_CHARS = 13;
 
 const buttonsList = document.querySelectorAll('button');
 buttonsList.forEach(button => {
@@ -51,11 +51,18 @@ function handleButtonClick(event) {
 
 function displayValue(val) {
     const display = document.querySelector('.display');
-    val = val.toString().substring(0, 12);
-    if (isNumber(val)) {
-        display.innerText = Number.parseFloat(val).toLocaleString('en-GB');
+    val = val.toString();
+    if (val.includes("e")) {
+        let base = val.substring(0, val.indexOf('e'));
+        let notation = val.substring(val.indexOf('e'));
+        display.innerText = base.substring(0, MAX_DISPLAY_CHARS - 1 - notation.length + 1) + notation;
+    } else {
+        val = val.substring(0, MAX_DISPLAY_CHARS - 1);
+        if (isNumber(val)) {
+            display.innerText = Number.parseFloat(val).toLocaleString('en-GB');
+        }
+        else display.innerText = val;
     }
-    else display.innerText = val;
 }
 
 function handleNumber(string) {
@@ -112,7 +119,7 @@ function divide(num1, num2) {
         alert('Can\'t divide by 0!');
         return 0;
     }
-    return parseFloat(num1) / parseFloat(num2);
+    return (parseFloat(num1) / parseFloat(num2));
 }
 function multiply(num1, num2) {
     return num1 * num2;
