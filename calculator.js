@@ -7,16 +7,15 @@ const MAX_DISPLAY_CHARS = 13;
 const buttonsList = document.querySelectorAll('button');
 buttonsList.forEach(button => {
     button.addEventListener('click', function (e) {
-        handleButtonClick(e.target.innerText);
-    }
-    )
+        handleUserInput(e.target.innerText);
+    })
 })
 
 window.addEventListener('keydown', function (e) {
-    handleButtonClick(e.key);
+    handleUserInput(e.key);
 })
 
-function handleButtonClick(key) {
+function handleUserInput(key) {
     const buttonClicked = key;
 
     switch (buttonClicked) {
