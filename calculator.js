@@ -42,6 +42,9 @@ function handleButtonClick(event) {
                 cleanHistory();
             }
             break;
+        case ".":
+            currentNumber += ".";
+            break;
         default:
             isNumber(buttonClicked) ? handleNumber(buttonClicked) : alert('?');
             break;
@@ -66,7 +69,7 @@ function displayValue(val) {
 }
 
 function handleNumber(string) {
-    if (isNumber(lastButtonClicked)) {
+    if (isNumber(lastButtonClicked) || lastButtonClicked === ".") {
         currentNumber += string;
     } else {
         currentNumber = string;
@@ -75,7 +78,7 @@ function handleNumber(string) {
 }
 
 function isNumber(string) {
-    return /^[0-9]+$/.test(string);
+    return /^[+-]?\d+(\.\d+)?$/.test(string);
 }
 
 function cleanHistory() {
