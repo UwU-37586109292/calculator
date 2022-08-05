@@ -62,3 +62,8 @@ button {
     border: 1px solid #6BB3AE;
     background-color: #99FFF8;
 }
+
+.operator {
+    border: 1px solid #4d8a86;
+    background-color: #477c79;
+}
