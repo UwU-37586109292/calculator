@@ -51,6 +51,7 @@ function handleButtonClick(event) {
 
 function displayValue(val) {
     const display = document.querySelector('.display');
+    val = val.toString().substring(0, 12);
     if (isNumber(val)) {
         display.innerText = Number.parseFloat(val).toLocaleString('en-GB');
     }
@@ -111,7 +112,7 @@ function divide(num1, num2) {
         alert('Can\'t divide by 0!');
         return 0;
     }
-    return num1 / num2;
+    return parseFloat(num1) / parseFloat(num2);
 }
 function multiply(num1, num2) {
     return num1 * num2;
