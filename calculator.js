@@ -23,7 +23,13 @@ function handleUserInput(key) {
             cleanHistory();
             break;
         case "+/-":
-            alert('change sign');
+            if (currentNumber) {
+                currentNumber = multiply(currentNumber, -1);
+                displayValue(currentNumber);
+            } else {
+                previousNumber = multiply(previousNumber, -1);
+                displayValue(previousNumber);
+            }
             break;
         case "+":
         case "-":
