@@ -22,6 +22,9 @@ function handleUserInput(key) {
         case "AC":
             cleanHistory();
             break;
+        case "+/-":
+            alert('change sign');
+            break;
         case "+":
         case "-":
         case "/":
@@ -55,7 +58,8 @@ function handleUserInput(key) {
             } displayValue(currentNumber);
             break;
         default:
-            isNumber(buttonClicked) ? handleNumber(buttonClicked) : alert('?');
+            if (isNumber(buttonClicked))
+                handleNumber(buttonClicked);
             break;
     }
     lastButtonClicked = buttonClicked;
