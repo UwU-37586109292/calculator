@@ -22,6 +22,15 @@ function handleUserInput(key) {
         case "AC":
             cleanHistory();
             break;
+        case "+/-":
+            if (currentNumber) {
+                currentNumber = multiply(currentNumber, -1);
+                displayValue(currentNumber);
+            } else {
+                previousNumber = multiply(previousNumber, -1);
+                displayValue(previousNumber);
+            }
+            break;
         case "+":
         case "-":
         case "/":
@@ -55,7 +64,8 @@ function handleUserInput(key) {
             } displayValue(currentNumber);
             break;
         default:
-            isNumber(buttonClicked) ? handleNumber(buttonClicked) : alert('?');
+            if (isNumber(buttonClicked))
+                handleNumber(buttonClicked);
             break;
     }
     lastButtonClicked = buttonClicked;
