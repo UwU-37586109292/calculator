@@ -62,6 +62,12 @@ button {
     border-radius: 8px;
     border: 1px solid #6BB3AE;
     background-color: #99FFF8;
+    box-shadow: 0 5px #999;
+}
+
+button:active {
+    box-shadow: 0 2px #4d8a86;
+    transform: translateY(3px);
 }
 
 .operator {
