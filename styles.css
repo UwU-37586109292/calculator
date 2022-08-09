@@ -30,6 +30,7 @@ body {
     background-color: #FF99E8;
     padding: 15px;
     border-radius: 8px;
+    box-shadow: 5px 5px lightgray;
 }
 
 .main {
